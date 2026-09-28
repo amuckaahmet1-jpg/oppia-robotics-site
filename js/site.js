@@ -334,16 +334,21 @@ form.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Gönderiliyor...';
   try {
-    const response = await fetch(form.action, {
+    // JS ile gönderimde FormSubmit'in /ajax/ adresi kullanılmalı; form action'ı JS kapalıyken yedek olarak kalır
+    const endpoint = form.action.replace('://formsubmit.co/', '://formsubmit.co/ajax/');
+    const response = await fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
     });
-    if (response.ok) {
+    const result = await response.json().catch(() => ({}));
+    // FormSubmit hata durumunda da 200 dönebilir; asıl sonuç "success" alanındadır
+    if (response.ok && String(result.success) === 'true') {
       status.classList.remove('hidden');
       form.reset();
       setTimeout(() => status.classList.add('hidden'), 6000);
     } else {
+      console.error('Form gönderilemedi:', result.message || response.status);
       errorMsg.classList.remove('hidden');
     }
   } catch (err) {
