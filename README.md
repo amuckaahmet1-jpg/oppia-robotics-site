@@ -14,7 +14,16 @@ content/            Düzenlenebilir içerikler
   awards.json       Ödüller ve dereceler
   gallery.json      "Arenadan Kareler" galerisi
 images/             Logo, galeri, takım ve robot fotoğrafları
+  uploads/          Yönetim panelinden yüklenen fotoğraflar
+admin/              Yönetim paneli (Decap CMS)
 ```
+
+## Yönetim paneli
+
+İçerikler **https://www.oppiarobotics.com/admin** adresindeki panelden düzenlenir.
+Giriş GitHub hesabıyla yapılır; bu repoya yazma yetkisi olan herkes kaydedebilir.
+Panelde yapılan her kayıt `main` dalına bir commit olarak gider ve Netlify siteyi
+otomatik olarak yeniden yayınlar. Panel ayarları `admin/config.yml` dosyasındadır.
 
 ## İçerik güncelleme
 

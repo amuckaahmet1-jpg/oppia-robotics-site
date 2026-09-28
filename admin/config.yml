@@ -1,0 +1,115 @@
+# OPPIA ROBOTICS yönetim paneli (Decap CMS) ayarları
+# Panel: https://www.oppiarobotics.com/admin
+# Girişler GitHub hesabıyla yapılır; yalnızca repoya yazma yetkisi olanlar kaydedebilir.
+
+backend:
+  name: github
+  repo: amuckaahmet1-jpg/oppia-robotics-site
+  branch: main
+  commit_messages:
+    create: "{{collection}}: {{slug}} oluşturuldu"
+    update: "{{collection}}: {{slug}} güncellendi"
+    delete: "{{collection}}: {{slug}} silindi"
+    uploadMedia: "Fotoğraf yüklendi: {{path}}"
+    deleteMedia: "Fotoğraf silindi: {{path}}"
+
+locale: tr
+
+# Panelden yüklenen fotoğraflar buraya kaydedilir
+media_folder: images/uploads
+public_folder: images/uploads
+
+collections:
+  - name: icerik
+    label: Site İçeriği
+    editor:
+      preview: false
+    files:
+      - name: team
+        label: Takım Üyeleri
+        file: content/team.json
+        fields:
+          - label: Üyeler
+            name: members
+            widget: list
+            label_singular: Üye
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { label: Ad Soyad, name: name, widget: string }
+              - { label: Görev, name: role, widget: string, required: false, hint: "Örn. Takım Kaptanı, Yazılım Sorumlusu" }
+              - { label: Üst satırda göster, name: featured, widget: boolean, default: false, required: false, hint: "Açık olanlar (kaptan, danışman vb.) diğer üyelerin üstünde gösterilir" }
+              - { label: Fotoğraf, name: photo, widget: image, required: false, hint: "Kare, yüz ortada bir fotoğraf en iyi sonucu verir. Boş bırakılırsa baş harfler gösterilir." }
+              - label: Eğitim
+                name: education
+                widget: list
+                label_singular: Eğitim bilgisi
+                required: false
+                summary: "{{fields.department}} — {{fields.school}}"
+                fields:
+                  - { label: Bölüm, name: department, widget: string, required: false }
+                  - { label: Okul, name: school, widget: string, required: false }
+
+      - name: robots
+        label: Robotlarımız
+        file: content/robots.json
+        fields:
+          - label: Robotlar
+            name: robots
+            widget: list
+            label_singular: Robot
+            summary: '{{fields.code}} "{{fields.name}}"'
+            fields:
+              - { label: Kod, name: code, widget: string, hint: "Örn. OPPIA-VIII" }
+              - { label: Robot adı, name: name, widget: string, required: false, hint: "Örn. SEAWOLF" }
+              - { label: Yarışma, name: competition, widget: string, required: false }
+              - { label: Sonuç, name: result, widget: string, required: false, hint: "Örn. 2026 — Finalist" }
+              - { label: Fotoğraf, name: image, widget: image, required: false }
+              - { label: Fotoğraf açıklaması (alt metin), name: alt, widget: string, required: false }
+              - { label: Açıklama, name: description, widget: text, required: false }
+              - label: Özellikler
+                name: features
+                widget: list
+                required: false
+                field: { label: Özellik, name: feature, widget: string }
+
+      - name: stats
+        label: Sayaçlar (Rakamlarla OPPIA)
+        file: content/stats.json
+        fields:
+          - label: Sayaçlar
+            name: stats
+            widget: list
+            label_singular: Sayaç
+            max: 4
+            summary: "{{fields.value}} — {{fields.label}}"
+            fields:
+              - { label: Sayı, name: value, widget: number, value_type: int, min: 0 }
+              - { label: Başlık, name: label, widget: string }
+
+      - name: awards
+        label: Ödüller & Dereceler
+        file: content/awards.json
+        fields:
+          - label: Ödüller
+            name: awards
+            widget: list
+            label_singular: Ödül
+            summary: "{{fields.title}} — {{fields.result}}"
+            fields:
+              - { label: Yarışma, name: title, widget: string }
+              - { label: Derece, name: result, widget: string, required: false }
+
+      - name: gallery
+        label: Arenadan Kareler (Galeri)
+        file: content/gallery.json
+        fields:
+          - label: Kareler
+            name: slides
+            widget: list
+            label_singular: Kare
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Başlık, name: title, widget: string }
+              - { label: Alt yazı, name: caption, widget: string, required: false }
+              - { label: Fotoğraf, name: image, widget: image }
+              - { label: Fotoğraf açıklaması (alt metin), name: alt, widget: string, required: false }
