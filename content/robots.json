@@ -1,0 +1,94 @@
+{
+  "robots": [
+    {
+      "code": "OPPIA-I",
+      "name": "SEAWOLF",
+      "competition": "TEKNOFEST İnsansız Deniz Aracı Yarışması",
+      "result": "2024 — Finalist",
+      "image": "images/robots/oppia-1-seawolf.jpg",
+      "alt": "OPPIA-I SEAWOLF - İnsansız Deniz Aracı",
+      "description": "İki gövdeli (katamaran) yapıya sahip otonom su üstü aracımız. GPS destekli rota takibi, otonom engel sakınma ve önceden belirlenen renk bilgisine göre hedefe angaje olma görevlerini insan müdahalesi olmadan tamamlayabiliyor.",
+      "features": []
+    },
+    {
+      "code": "OPPIA-II",
+      "name": "SKYWARDEN",
+      "competition": "TEKNOFEST Çelikkubbe Hava Savunma Sistemleri Yarışması",
+      "result": "2026 — Katılım",
+      "image": "images/robots/oppia-2-skywarden.jpg",
+      "alt": "OPPIA-II SKYWARDEN - Hava Savunma Sistemi",
+      "description": "Hava tehditlerine karşı tespit, takip, karar verme ve müdahale döngüsünü otonom olarak yürüten hava savunma sistemimiz. Kamera tabanlı görüntü işleme ile hedefleri algılayıp takip ediyor, angajman kararını verip iki eksenli taretiyle hedefe yöneliyor.",
+      "features": [
+        "İki eksenli (yatay/dikey) motorlu taret",
+        "Çift kameralı görüş: geniş açılı takip + lensli nişan kamerası",
+        "Gerçek zamanlı hedef tespiti ve takibi",
+        "3B baskı kubbe gövde, modüler montaj"
+      ]
+    },
+    {
+      "code": "OPPIA-III",
+      "name": "IRONHAUL",
+      "competition": "TEKNOFEST Sanayide Robotik Uygulamalar Yarışması",
+      "result": "2026 — Finalist",
+      "image": "images/robots/oppia-3-ironhaul.jpg",
+      "alt": "OPPIA-III IRONHAUL - Sanayide Robotik Uygulamalar",
+      "description": "Fabrika içi lojistik süreçlerinde otonom yük taşıyan çatal (forklift) tipi mobil robotumuz. Bulunduğu alanı haritalandırıp görüntü işleme ile şerit takibi yapıyor, QR kod okuyarak konumunu doğruluyor ve engelleri algılayıp güvenle durabiliyor.",
+      "features": []
+    },
+    {
+      "code": "OPPIA-IV",
+      "name": "TRAILHAWK",
+      "competition": "TEKNOFEST Robolig Yarışması",
+      "result": "2025 — Finalist",
+      "image": "images/robots/oppia-4-trailhawk.jpg",
+      "alt": "OPPIA-IV TRAILHAWK - Robolig Yarışması",
+      "description": "Deneyap Kart altyapısı üzerine geliştirdiğimiz, lig usulü yarışan arazi tipi robotumuz. Kargo taşıma, belirli rotalarda otonom hareket ve bayrak toplama gibi görevleri tamamlayarak parkur puanı topluyor.",
+      "features": []
+    },
+    {
+      "code": "OPPIA-V",
+      "name": "RIDGEBACK",
+      "competition": "TEKNOFEST İnsansız Kara Aracı Yarışması",
+      "result": "2026 — Katılım",
+      "image": "images/robots/oppia-5-ridgeback.jpg",
+      "alt": "OPPIA-V RIDGEBACK - İnsansız Kara Aracı",
+      "description": "Zorlu arazi parkurları için geliştirdiğimiz insansız kara aracımız. Algılama, navigasyon, karar verme ve engel aşma görevlerine yönelik tasarlandı; uzaktan kontrol, yarı otonom ve otonom sürüş modlarında çalışabiliyor.",
+      "features": [
+        "Engel aşmaya uygun eklemli (salıncak kollu) şasi",
+        "Dört adet arazi tipi havalı lastik, redüktörlü DC motorlar",
+        "Uzaktan / yarı otonom / otonom sürüş modları",
+        "Kapalı elektronik kutusu ve acil durdurma butonu"
+      ]
+    },
+    {
+      "code": "OPPIA-VI",
+      "name": "SIEGEBREAKER",
+      "competition": "TEKNOFEST Robotik Fetih 1453 Yarışması",
+      "result": "2018 & 2019 — Finalist",
+      "image": "images/robots/oppia-6-siegebreaker.jpg",
+      "alt": "OPPIA-VI SIEGEBREAKER - Robotik Fetih 1453",
+      "description": "Fatih Sultan Mehmed'in gemileri karadan yürütmesinden ilham alan yarışma için, takımımızın \"İZÜ Robot\" adıyla geliştirdiği ilk robotu. Model gemileri kavrayıp taşıma, parkur geçişi ve surlara top atışı görevlerini uzaktan kumanda kullanmadan, tam otonom olarak yapmak üzere tasarlandı.",
+      "features": [
+        "Engebeli zemin için paletli yürüyüş sistemi",
+        "Model gemileri kavramak için dişli tahrikli kıskaç",
+        "Sur hedeflerine atış için top namlusu",
+        "Görüntü işleme ile tam otonom görev yürütme"
+      ]
+    },
+    {
+      "code": "OPPIA-VII",
+      "name": "MUDSTORM",
+      "competition": "İYTE IZTECH RoboLeague Arazi Aracı Yarışması",
+      "result": "Birincilik",
+      "image": "images/robots/oppia-7-mudstorm.jpg",
+      "alt": "OPPIA-VII MUDSTORM - Arazi Aracı",
+      "description": "Köprü, kontrollü geçit ve sürpriz engellerle dolu arazi parkurunu en kısa sürede ve en az cezayla tamamlamak için geliştirdiğimiz çevik arazi aracımız. Parkuru birincilikle tamamladı.",
+      "features": [
+        "Dört tekerden çekiş (4x4), bağımsız tekerlek motorları",
+        "Derin dişli arazi lastikleri ile yüksek tutunma",
+        "Alçak ağırlık merkezli, kompakt 3B baskı gövde",
+        "Köprü ve dar geçitler için hassas manevra kabiliyeti"
+      ]
+    }
+  ]
+}

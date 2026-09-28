@@ -1,0 +1,34 @@
+{
+  "slides": [
+    {
+      "title": "Şampiyonlar Ligi Sahnesi",
+      "caption": "Robolig Yarışması Üçüncüsü · TEKNOFEST 2024",
+      "image": "images/gallery/kare-1.jpg",
+      "alt": "TEKNOFEST Şampiyonlar Ligi sahnesinde Robolig üçüncülüğü"
+    },
+    {
+      "title": "Kürsüden Hemen Sonra",
+      "caption": "Robolig robotumuz ve ödülümüz · Adana, Ekim 2024",
+      "image": "images/gallery/kare-2.jpg",
+      "alt": "Robolig robotu ve üçüncülük ödülüyle takım"
+    },
+    {
+      "title": "Denize Açılmadan Önce",
+      "caption": "İnsansız Deniz Aracı Yarışması · TEKNOFEST 2024",
+      "image": "images/gallery/kare-3.jpg",
+      "alt": "İnsansız deniz aracı ile TEKNOFEST 2024 alanında takım"
+    },
+    {
+      "title": "Yarış Alanında",
+      "caption": "Sanayide Robotik Uygulamalar · TEKNOFEST 2026",
+      "image": "images/gallery/kare-4.jpg",
+      "alt": "Sanayide Robotik Uygulamalar Yarışması alanında takım ve robot"
+    },
+    {
+      "title": "IRONHAUL Görevde",
+      "caption": "OPPIA-III yük taşıma görevinde · TEKNOFEST 2026",
+      "image": "images/gallery/kare-5.jpg",
+      "alt": "OPPIA-III IRONHAUL paletli yük ile"
+    }
+  ]
+}

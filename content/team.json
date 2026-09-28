@@ -1,0 +1,92 @@
+{
+  "members": [
+    {
+      "name": "Moustafa Bekir",
+      "role": "Takım Kaptanı",
+      "featured": true,
+      "photo": "images/team/moustafa-bekir.jpg",
+      "education": [
+        {
+          "department": "Elektrik-Elektronik Müh. & Yazılım Müh.",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Erdal Alimovski",
+      "role": "Takım Danışmanı",
+      "featured": true,
+      "photo": "images/team/erdal-alimovski.jpg",
+      "education": [
+        {
+          "department": "",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Achmet Amoutska",
+      "role": "Test Sorumlusu",
+      "featured": false,
+      "photo": "images/team/achmet-amoutska.jpg",
+      "education": [
+        {
+          "department": "Bilgisayar Mühendisliği",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Sali Veli Basa",
+      "role": "Yazılım Sorumlusu",
+      "featured": false,
+      "photo": "images/team/sali-veli-basa.jpg",
+      "education": [
+        {
+          "department": "Yazılım Mühendisliği (İngilizce)",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Mechmet Amoutska",
+      "role": "Elektronik Sorumlusu",
+      "featured": false,
+      "photo": "images/team/mechmet-amoutska.jpg",
+      "education": [
+        {
+          "department": "Yazılım Mühendisliği (%30 İngilizce)",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Kaizim Arnaout",
+      "role": "Sosyal Medya Sorumlusu",
+      "featured": false,
+      "photo": "images/team/kaizim-arnaout.jpg",
+      "education": [
+        {
+          "department": "Uluslararası Ticaret ve Finansman (İngilizce)",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "name": "Giasin Tsormpatzik",
+      "role": "Tasarım Sorumlusu",
+      "featured": false,
+      "photo": "images/team/giasin-tsormpatzik.jpg",
+      "education": [
+        {
+          "department": "Tıp · 2. Sınıf",
+          "school": "İstanbul Yeni Yüzyıl Üniversitesi"
+        },
+        {
+          "department": "Biyoloji · Mezun",
+          "school": "İstanbul Üniversitesi"
+        }
+      ]
+    }
+  ]
+}

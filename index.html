@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OPPIA ROBOTICS | Robotik Yarışma Takımı</title>
+<meta name="description" content="OPPIA ROBOTICS — İstanbul Sabahattin Zaim Üniversitesi kökenli, TEKNOFEST ve uluslararası robotik yarışmalarında yarışan mühendislik takımı.">
+
+<!-- Google Fonts: Orbitron (başlık) + Inter (gövde) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          oppia: {
+            bg:     '#0A0E14',
+            panel:  '#121826',
+            panel2: '#0D1320',
+            line:   '#1E2A3A',
+            text:   '#E8EEF5',
+            muted:  '#8593A8',
+            cyan:   '#00E5FF',
+            amber:  '#FF7A29',
+          }
+        },
+        fontFamily: {
+          display: ['Orbitron', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background-color:#0A0E14;
+  }
+  *,*::before,*::after{ box-sizing: inherit; }
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+    background-color:#0A0E14;
+  }
+  body{
+    background-color:#0A0E14;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    background-position: center top;
+  }
+
+  /* HUD köşe parantezleri — marka boyunca tekrar eden yapısal motif */
+  .corners{ position:relative; }
+  .corners::before,.corners::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border:2px solid rgba(0,229,255,.75);
+    pointer-events:none;
+  }
+  .corners::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .corners::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  /* Kesik köşe (konnektör) buton/etiket şekli */
+  .btn-cut{
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  }
+
+  .glow-cyan{ text-shadow: 0 0 22px rgba(0,229,255,.5), 0 0 52px rgba(0,229,255,.22); }
+
+  .nav-link{ position:relative; padding-bottom:4px; transition:color .2s ease; }
+  .nav-link::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:0%;
+    background:#00E5FF; transition:width .25s ease;
+  }
+  .nav-link:hover{ color:#E8EEF5; }
+  .nav-link:hover::after{ width:100%; }
+
+  #site-nav{ top: env(safe-area-inset-top, 0px); }
+
+  .field{
+    background:#0D1320; border:1px solid #1E2A3A; color:#E8EEF5;
+    padding:.8rem 1rem; width:100%; font-size:.925rem; outline:none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field::placeholder{ color:#5C6B80; }
+  .field:focus{ border-color:#00E5FF; box-shadow:0 0 0 3px rgba(0,229,255,.12); }
+
+  @keyframes pulseDot{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+  .pulse-dot{ animation:pulseDot 2s ease-in-out infinite; }
+
+  @keyframes heroIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  .hero-in > *{ opacity:0; animation:heroIn .7s ease forwards; }
+  .hero-in > *:nth-child(1){ animation-delay:.05s; }
+  .hero-in > *:nth-child(2){ animation-delay:.18s; }
+  .hero-in > *:nth-child(3){ animation-delay:.30s; }
+  .hero-in > *:nth-child(4){ animation-delay:.42s; }
+  .hero-in > *:nth-child(5){ animation-delay:.54s; }
+
+  @keyframes nodePulse{ 0%,100%{ opacity:.3; r:3; } 50%{ opacity:1; r:5; } }
+  .node{ animation:nodePulse 2.6s ease-in-out infinite; transform-origin:center; }
+
+  /* Arenadan Kareler galerisi — durum radyo düğmeleriyle tutulur, JS gerekmez */
+  .mem-radio{ position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+  .mem-track{ transition: transform .5s ease; }
+  .mem-slide{ background:#0D1320; }
+  .mem-nav{ display:none; }
+  .mem-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:5;
+    width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+    background:rgba(10,14,20,.75); border:1px solid #1E2A3A; color:#E8EEF5;
+    cursor:pointer; user-select:none; transition:border-color .2s, color .2s;
+  }
+  .mem-arrow:hover{ border-color:#00E5FF; color:#00E5FF; }
+  .mem-arrow-l{ left:12px; } .mem-arrow-r{ right:12px; }
+  .mem-dot{ display:block; height:6px; width:6px; border-radius:9999px; background:#1E2A3A; cursor:pointer; transition:all .25s; }
+  .mem-dot:hover{ background:#8593A8; }
+  .mem-count{ display:none; }
+  .mem-radio:focus-visible ~ .mem-stage{ outline:2px solid #00E5FF; outline-offset:-2px; }
+  /* #mem-rN:checked kuralları js/site.js tarafından kare sayısına göre üretilir */
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#0A0E14; }
+  ::-webkit-scrollbar-thumb{ background:#1E2A3A; border:2px solid #0A0E14; border-radius:6px; }
+
+  :focus-visible{ outline:2px solid #00E5FF; outline-offset:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+
+<body class="font-sans bg-oppia-bg text-oppia-text antialiased">
+
+<!-- =========================================================
+     NAVİGASYON
+========================================================= -->
+<nav id="site-nav" class="fixed inset-x-0 z-50 border-b border-oppia-line/70 bg-oppia-bg/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#hero" class="flex items-center">
+        <img src="images/logo.png" alt="OPPIA ROBOTICS" class="h-9 sm:h-10 w-auto">
+      </a>
+
+      <div class="hidden md:flex items-center gap-9 text-sm font-medium text-oppia-muted">
+        <a href="#hakkimizda" class="nav-link">Hakkımızda</a>
+        <a href="#robotlar" class="nav-link">Robotlarımız</a>
+        <a href="#basarilar" class="nav-link">Başarılarımız</a>
+        <a href="#iletisim" class="nav-link">İletişim</a>
+      </div>
+
+      <a href="#iletisim" class="hidden md:inline-flex btn-cut bg-oppia-amber text-oppia-bg font-semibold text-sm px-5 py-2.5 hover:brightness-110 transition">İletişime Geçin</a>
+
+      <button id="menu-btn" class="md:hidden text-oppia-text p-2 -mr-2" aria-label="Menüyü aç" aria-expanded="false">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-oppia-line bg-oppia-bg/95 backdrop-blur-md">
+    <div class="flex flex-col px-5 py-5 gap-5 text-sm font-medium text-oppia-muted">
+      <a href="#hakkimizda" class="mobile-link">Hakkımızda</a>
+      <a href="#robotlar" class="mobile-link">Robotlarımız</a>
+      <a href="#basarilar" class="mobile-link">Başarılarımız</a>
+      <a href="#iletisim" class="mobile-link">İletişim</a>
+      <a href="#iletisim" class="mobile-link btn-cut bg-oppia-amber text-oppia-bg font-semibold text-center px-5 py-2.5">İletişime Geçin</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section id="hero" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="max-w-2xl hero-in">
+      <div class="corners inline-flex items-center gap-2.5 px-4 py-2 mb-8 text-xs font-medium text-oppia-cyan/90">
+        <span class="w-1.5 h-1.5 rounded-full bg-oppia-cyan pulse-dot"></span>
+        Sistem Aktif — 2026 Sezonu
+      </div>
+
+      <h1 class="font-display font-black text-5xl sm:text-6xl lg:text-7xl leading-[1.05] glow-cyan">
+        OPPIA<br><span class="text-oppia-cyan">ROBOTICS</span>
+      </h1>
+
+      <p class="mt-6 text-xl sm:text-2xl text-oppia-text/90 font-semibold max-w-xl">
+        Geleceğin Teknolojisini Tasarlıyor ve Üretiyoruz
+      </p>
+
+      <p class="mt-4 text-oppia-muted leading-relaxed max-w-xl">
+        İstanbul Sabahattin Zaim Üniversitesi kökenli OPPIA ROBOTICS; TEKNOFEST ve uluslararası
+        robotik yarışmalarında mühendislik disipliniyle yarışan bir öğrenci takımıdır.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#robotlar" class="btn-cut bg-oppia-amber text-oppia-bg font-semibold px-7 py-3.5 hover:brightness-110 transition">Robotlarımız</a>
+        <a href="#iletisim" class="btn-cut border border-oppia-line text-oppia-text font-semibold px-7 py-3.5 hover:border-oppia-cyan hover:text-oppia-cyan transition">İletişime Geçin</a>
+      </div>
+    </div>
+
+    <!-- ARENADAN KARELER (kaydırmalı galeri) -->
+    <div class="hero-in">
+      <div id="memories" class="corners border border-oppia-line bg-oppia-panel/60" aria-label="Arenadan Kareler">
+        <!-- İçerik content/gallery.json dosyasından js/site.js ile oluşturulur -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     HAKKIMIZDA & TARİHÇE & TAKIMIMIZ
+========================================================= -->
+<section id="hakkimizda" class="relative py-24 sm:py-32 border-t border-oppia-line/60">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <span class="text-oppia-cyan text-sm font-semibold">Hakkımızda</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Mühendislik disipliniyle yarışıyoruz</h2>
+      <p class="mt-5 text-oppia-muted leading-relaxed">
+        OPPIA ROBOTICS, robotik ve otonom sistemler alanında çalışan, TEKNOFEST başta olmak üzere ulusal ve
+        uluslararası yarışmalarda Türkiye'yi temsil eden bir mühendislik takımıdır. Farklı mühendislik
+        disiplinlerinden gelen ekip üyelerimiz; tasarım, üretim ve yazılım süreçlerinin tamamını kendi
+        bünyemizde yürütüyoruz.
+      </p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+      <!-- Misyon -->
+      <div class="border-l-2 border-oppia-cyan/70 bg-oppia-panel/40 p-7">
+        <svg class="w-7 h-7 text-oppia-cyan mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+        <h3 class="font-display font-semibold text-lg">Misyonumuz</h3>
+        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed">Yenilikçi, sürdürülebilir ve yüksek performanslı robotik sistemler geliştirerek Türkiye'nin teknoloji ekosistemine katkı sağlamak.</p>
+      </div>
+      <!-- Vizyon -->
+      <div class="border-l-2 border-oppia-cyan/70 bg-oppia-panel/40 p-7">
+        <svg class="w-7 h-7 text-oppia-cyan mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3 class="font-display font-semibold text-lg">Vizyonumuz</h3>
+        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed">Robotik ve otonom sistemler alanında uluslararası arenada tanınan, öncü bir mühendislik takımı olmak.</p>
+      </div>
+    </div>
+
+    <!-- TARİHÇEMİZ -->
+    <div class="mt-24">
+      <div class="max-w-2xl">
+        <span class="text-oppia-cyan text-sm font-semibold">Tarihçemiz</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Nereden nereye</h2>
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-5 gap-10 items-start">
+        <!-- Alıntı paneli -->
+        <div class="lg:col-span-2 corners border border-oppia-line bg-oppia-panel/50 p-7 sm:p-8">
+          <svg class="w-8 h-8 text-oppia-cyan/50 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 6C6.5 7.8 5 10.2 5 13c0 2.5 1.7 4 3.7 4 1.8 0 3.2-1.3 3.2-3.1 0-1.7-1.2-3-2.8-3-.3 0-.6 0-.8.1.3-1.7 1.7-3.4 3.7-4.4L9.5 6Zm9 0c-3 1.8-4.5 4.2-4.5 7 0 2.5 1.7 4 3.7 4 1.8 0 3.2-1.3 3.2-3.1 0-1.7-1.2-3-2.8-3-.3 0-.6 0-.8.1.3-1.7 1.7-3.4 3.7-4.4L18.5 6Z"/></svg>
+          <p class="text-sm sm:text-[15px] text-oppia-text/90 leading-relaxed italic">
+            İstanbul Sabahattin Zaim Üniversitesi 2. sınıf Yazılım Mühendisliği öğrencilerinden Moustafa Bekir,
+            İremnaz Çay, Sinem Sena Ertaş ve Merve Boşna tarafından "İZÜ ROBOT TAKIMI" adıyla Nisan 2017'de
+            kurulmuştur. 2021 yılında TÜBİTAK BİGG aracılığıyla OPPİA TECHNOLOGY şirketi kurulmuş, 2025 yılı
+            itibarıyla da takımımız yoluna "OPPIA ROBOTICS" ismiyle devam etme kararı almıştır.
+          </p>
+        </div>
+
+        <!-- Zaman çizelgesi -->
+        <div class="lg:col-span-3 space-y-0">
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center">
+              <span class="w-3 h-3 rounded-full bg-oppia-cyan mt-1.5 shrink-0 shadow-[0_0_0_4px_rgba(0,229,255,.15)]"></span>
+              <span class="w-px flex-1 bg-oppia-line mt-1"></span>
+            </div>
+            <div class="pb-9">
+              <p class="text-xs font-mono text-oppia-amber">Nisan 2017</p>
+              <h4 class="font-display font-semibold text-base mt-1">"İZÜ Robot Takımı" Kuruldu</h4>
+              <p class="mt-1.5 text-sm text-oppia-muted leading-relaxed">İSZÜ Yazılım Mühendisliği öğrencileri Moustafa Bekir, İremnaz Çay, Sinem Sena Ertaş ve Merve Boşna tarafından kuruldu.</p>
+            </div>
+          </div>
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center">
+              <span class="w-3 h-3 rounded-full bg-oppia-cyan mt-1.5 shrink-0 shadow-[0_0_0_4px_rgba(0,229,255,.15)]"></span>
+              <span class="w-px flex-1 bg-oppia-line mt-1"></span>
+            </div>
+            <div class="pb-9">
+              <p class="text-xs font-mono text-oppia-amber">2021</p>
+              <h4 class="font-display font-semibold text-base mt-1">OPPİA TECHNOLOGY Kuruldu</h4>
+              <p class="mt-1.5 text-sm text-oppia-muted leading-relaxed">TÜBİTAK BİGG desteğiyle OPPİA TECHNOLOGY şirketi kuruldu.</p>
+            </div>
+          </div>
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center">
+              <span class="w-3 h-3 rounded-full bg-oppia-cyan mt-1.5 shrink-0"></span>
+            </div>
+            <div>
+              <p class="text-xs font-mono text-oppia-amber">2025</p>
+              <h4 class="font-display font-semibold text-base mt-1">"OPPIA ROBOTICS" Adını Aldık</h4>
+              <p class="mt-1.5 text-sm text-oppia-muted leading-relaxed">Takımımız, yoluna "OPPIA ROBOTICS" ismiyle devam etme kararı aldı.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAKIM ÜYELERİ -->
+    <div class="mt-24">
+      <div class="max-w-2xl">
+        <span class="text-oppia-cyan text-sm font-semibold">Ekibimiz</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Takım Üyelerimiz</h2>
+      </div>
+
+      <!-- Kartlar content/team.json dosyasından oluşturulur. "featured": true olanlar üst satırda gösterilir. -->
+      <div id="team-featured" class="flex flex-wrap justify-center gap-5 mt-12"></div>
+      <div id="team-members" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 mt-5"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ROBOTLARIMIZ
+========================================================= -->
+<section id="robotlar" class="relative py-24 sm:py-32 border-t border-oppia-line/60 bg-oppia-panel2/40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-4">
+      <span class="text-oppia-cyan text-sm font-semibold">Projelerimiz</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Robotlarımız</h2>
+      <p class="mt-5 text-oppia-muted leading-relaxed">Geçmiş sezonlarda geliştirdiğimiz sistemlerden bazıları.</p>
+    </div>
+
+    <!-- Kartlar content/robots.json dosyasından oluşturulur -->
+    <div id="robots-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     BAŞARILARIMIZ (İSTATİSTİKLER + ÖDÜLLER)
+========================================================= -->
+<section id="basarilar" class="relative py-24 sm:py-32 border-t border-oppia-line/60">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-12">
+      <span class="text-oppia-cyan text-sm font-semibold">Başarılarımız</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Rakamlarla OPPIA ROBOTICS</h2>
+    </div>
+
+    <!-- Sayaçlar -->
+    <div id="stats-grid" class="corners border border-oppia-line bg-oppia-panel/50 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-oppia-line"></div>
+
+    <!-- Ödüller ve Dereceler -->
+    <div class="mt-20">
+      <h3 class="font-display font-bold text-2xl sm:text-3xl">Ödüllerimiz & Derecelerimiz</h3>
+
+      <!-- Liste content/awards.json dosyasından oluşturulur -->
+      <div id="awards-list" class="mt-8 corners border border-oppia-line bg-oppia-panel/50 divide-y divide-oppia-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     İLETİŞİM & KONUM
+========================================================= -->
+<section id="iletisim" class="relative py-24 sm:py-32 border-t border-oppia-line/60 bg-oppia-panel2/40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-16">
+      <span class="text-oppia-cyan text-sm font-semibold">İletişim & Konum</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Bizimle iletişime geçin</h2>
+      <p class="mt-5 text-oppia-muted leading-relaxed">Sponsorluk, iş birliği veya takıma katılım hakkında bilgi almak için formu doldurun ya da doğrudan bize ulaşın.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10">
+      <!-- FORM -->
+      <form id="contact-form" action="https://formsubmit.co/oppiarobotics@gmail.com" method="POST" class="lg:col-span-3 corners border border-oppia-line bg-oppia-panel/60 p-7 sm:p-9 space-y-5">
+        <!-- FormSubmit ayarları -->
+        <input type="hidden" name="_subject" value="OPPIA ROBOTICS — Yeni İletişim Formu Mesajı">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <!-- Honeypot: botlara karşı gizli tuzak alanı, boş kalmalı -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <div>
+          <label for="cf-name" class="block text-sm font-medium text-oppia-muted mb-2">Ad Soyad</label>
+          <input id="cf-name" name="name" type="text" required class="field" placeholder="Adınız Soyadınız">
+        </div>
+        <div>
+          <label for="cf-email" class="block text-sm font-medium text-oppia-muted mb-2">E-posta</label>
+          <input id="cf-email" name="email" type="email" required class="field" placeholder="ornek@eposta.com">
+        </div>
+        <div>
+          <label for="cf-message" class="block text-sm font-medium text-oppia-muted mb-2">Mesaj</label>
+          <textarea id="cf-message" name="message" rows="5" required class="field resize-none" placeholder="Mesajınızı buraya yazın..."></textarea>
+        </div>
+        <button id="cf-submit" type="submit" class="btn-cut bg-oppia-amber text-oppia-bg font-semibold px-7 py-3.5 hover:brightness-110 transition w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed">Mesajı Gönder</button>
+        <p id="form-status" class="hidden text-sm text-oppia-cyan pt-1">Mesajınız için teşekkürler, en kısa sürede size dönüş yapacağız.</p>
+        <p id="form-error" class="hidden text-sm text-red-400 pt-1">Bir şeyler ters gitti, lütfen tekrar deneyin ya da doğrudan oppiarobotics@gmail.com adresine yazın.</p>
+      </form>
+
+      <!-- İLETİŞİM BİLGİLERİ -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="border border-oppia-line bg-oppia-panel/60 p-7">
+          <h3 class="font-display font-semibold text-lg mb-5">İletişim Bilgileri</h3>
+          <div class="space-y-4 text-sm">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-oppia-cyan shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/></svg>
+              <span class="text-oppia-muted">oppiarobotics@gmail.com</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-oppia-cyan shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657 13.414 20.9a2 2 0 0 1-2.828 0l-4.243-4.243a8 8 0 1 1 11.314 0Z"/><circle cx="12" cy="11" r="3"/></svg>
+              <span class="text-oppia-muted">İstanbul Sabahattin Zaim Üniversitesi, İstanbul</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-oppia-line bg-oppia-panel/60 p-7">
+          <h3 class="font-display font-semibold text-lg mb-5">Sosyal Medya</h3>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.instagram.com/oppiarobotics?stkn=dXJzNzFqOGFzMnll" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-11 h-11 flex items-center justify-center border border-oppia-line hover:border-oppia-cyan hover:text-oppia-cyan text-oppia-muted transition">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCoaKaSoOt3xqp0DQU36L7vQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-11 h-11 flex items-center justify-center border border-oppia-line hover:border-oppia-cyan hover:text-oppia-cyan text-oppia-muted transition">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="border-t border-oppia-line/60 py-10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-oppia-muted text-center sm:text-left">
+    <p>© 2026 OPPIA ROBOTICS. Tüm hakları saklıdır.</p>
+    <p>Geleceğin teknolojisini tasarlıyor ve üretiyoruz.</p>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
