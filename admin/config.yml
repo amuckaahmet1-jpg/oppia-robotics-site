@@ -25,9 +25,67 @@ public_folder: images/uploads
 collections:
   - name: icerik
     label: Site İçeriği
-    editor:
-      preview: false
+    description: "Kaydettiğiniz değişiklikler siteye hemen yansımaz. İşiniz bitince sağ alttaki \"Siteyi Yayınla\" butonuyla Netlify'dan tek seferde yayınlayın."
     files:
+      - name: site
+        label: Genel Bilgiler (Hero, Hakkımızda, Tarihçe, İletişim)
+        file: content/site.json
+        fields:
+          - label: Hero (sayfanın en üstü)
+            name: hero
+            widget: object
+            fields:
+              - { label: Üst etiket, name: badge, widget: string, hint: "Örn. Sistem Aktif — 2026 Sezonu" }
+              - { label: Slogan, name: tagline, widget: string }
+              - { label: Tanıtım yazısı, name: intro, widget: text }
+          - label: Hakkımızda
+            name: about
+            widget: object
+            fields:
+              - { label: Başlık, name: heading, widget: string }
+              - { label: Metin, name: text, widget: text }
+              - { label: Misyonumuz, name: mission, widget: text }
+              - { label: Vizyonumuz, name: vision, widget: text }
+          - label: Tarihçe
+            name: history
+            widget: object
+            fields:
+              - { label: Başlık, name: heading, widget: string }
+              - { label: Alıntı paneli metni, name: quote, widget: text }
+              - label: Zaman çizelgesi
+                name: events
+                widget: list
+                label_singular: Olay
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: Tarih, name: date, widget: string, hint: "Örn. Nisan 2017" }
+                  - { label: Başlık, name: title, widget: string }
+                  - { label: Açıklama, name: text, widget: text, required: false }
+          - label: İletişim
+            name: contact
+            widget: object
+            fields:
+              - { label: Bölüm açıklaması, name: intro, widget: text }
+              - { label: E-posta (gösterilen), name: email, widget: string, hint: "Sadece sayfada görünen adres. İletişim formunun gittiği adres ayrıca ayarlanır." }
+              - { label: Adres, name: address, widget: string }
+              - label: Sosyal medya hesapları
+                name: socials
+                widget: list
+                label_singular: Hesap
+                summary: "{{fields.platform}} — {{fields.url}}"
+                fields:
+                  - label: Platform
+                    name: platform
+                    widget: select
+                    options:
+                      - { label: Instagram, value: instagram }
+                      - { label: YouTube, value: youtube }
+                      - { label: LinkedIn, value: linkedin }
+                      - { label: X (Twitter), value: x }
+                      - { label: GitHub, value: github }
+                      - { label: Web sitesi, value: website }
+                  - { label: Bağlantı, name: url, widget: string, pattern: ['^https?://', "Bağlantı https:// ile başlamalı"] }
+
       - name: team
         label: Takım Üyeleri
         file: content/team.json

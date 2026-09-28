@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "badge": "Sistem Aktif — 2026 Sezonu",
+    "tagline": "Geleceğin Teknolojisini Tasarlıyor ve Üretiyoruz",
+    "intro": "İstanbul Sabahattin Zaim Üniversitesi kökenli OPPIA ROBOTICS; TEKNOFEST ve uluslararası robotik yarışmalarında mühendislik disipliniyle yarışan bir öğrenci takımıdır."
+  },
+  "about": {
+    "heading": "Mühendislik disipliniyle yarışıyoruz",
+    "text": "OPPIA ROBOTICS, robotik ve otonom sistemler alanında çalışan, TEKNOFEST başta olmak üzere ulusal ve uluslararası yarışmalarda Türkiye'yi temsil eden bir mühendislik takımıdır. Farklı mühendislik disiplinlerinden gelen ekip üyelerimiz; tasarım, üretim ve yazılım süreçlerinin tamamını kendi bünyemizde yürütüyoruz.",
+    "mission": "Yenilikçi, sürdürülebilir ve yüksek performanslı robotik sistemler geliştirerek Türkiye'nin teknoloji ekosistemine katkı sağlamak.",
+    "vision": "Robotik ve otonom sistemler alanında uluslararası arenada tanınan, öncü bir mühendislik takımı olmak."
+  },
+  "history": {
+    "heading": "Nereden nereye",
+    "quote": "İstanbul Sabahattin Zaim Üniversitesi 2. sınıf Yazılım Mühendisliği öğrencilerinden Moustafa Bekir, İremnaz Çay, Sinem Sena Ertaş ve Merve Boşna tarafından \"İZÜ ROBOT TAKIMI\" adıyla Nisan 2017'de kurulmuştur. 2021 yılında TÜBİTAK BİGG aracılığıyla OPPİA TECHNOLOGY şirketi kurulmuş, 2025 yılı itibarıyla da takımımız yoluna \"OPPIA ROBOTICS\" ismiyle devam etme kararı almıştır.",
+    "events": [
+      {
+        "date": "Nisan 2017",
+        "title": "\"İZÜ Robot Takımı\" Kuruldu",
+        "text": "İSZÜ Yazılım Mühendisliği öğrencileri Moustafa Bekir, İremnaz Çay, Sinem Sena Ertaş ve Merve Boşna tarafından kuruldu."
+      },
+      {
+        "date": "2021",
+        "title": "OPPİA TECHNOLOGY Kuruldu",
+        "text": "TÜBİTAK BİGG desteğiyle OPPİA TECHNOLOGY şirketi kuruldu."
+      },
+      {
+        "date": "2025",
+        "title": "\"OPPIA ROBOTICS\" Adını Aldık",
+        "text": "Takımımız, yoluna \"OPPIA ROBOTICS\" ismiyle devam etme kararı aldı."
+      }
+    ]
+  },
+  "contact": {
+    "intro": "Sponsorluk, iş birliği veya takıma katılım hakkında bilgi almak için formu doldurun ya da doğrudan bize ulaşın.",
+    "email": "oppiarobotics@gmail.com",
+    "address": "İstanbul Sabahattin Zaim Üniversitesi, İstanbul",
+    "socials": [
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/oppiarobotics?stkn=dXJzNzFqOGFzMnll"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UCoaKaSoOt3xqp0DQU36L7vQ"
+      }
+    ]
+  }
+}

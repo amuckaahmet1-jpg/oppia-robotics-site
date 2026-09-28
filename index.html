@@ -191,18 +191,18 @@
     <div class="max-w-2xl hero-in">
       <div class="corners inline-flex items-center gap-2.5 px-4 py-2 mb-8 text-xs font-medium text-oppia-cyan/90">
         <span class="w-1.5 h-1.5 rounded-full bg-oppia-cyan pulse-dot"></span>
-        Sistem Aktif — 2026 Sezonu
+        <span data-field="hero.badge">Sistem Aktif — 2026 Sezonu</span>
       </div>
 
       <h1 class="font-display font-black text-5xl sm:text-6xl lg:text-7xl leading-[1.05] glow-cyan">
         OPPIA<br><span class="text-oppia-cyan">ROBOTICS</span>
       </h1>
 
-      <p class="mt-6 text-xl sm:text-2xl text-oppia-text/90 font-semibold max-w-xl">
+      <p class="mt-6 text-xl sm:text-2xl text-oppia-text/90 font-semibold max-w-xl" data-field="hero.tagline">
         Geleceğin Teknolojisini Tasarlıyor ve Üretiyoruz
       </p>
 
-      <p class="mt-4 text-oppia-muted leading-relaxed max-w-xl">
+      <p class="mt-4 text-oppia-muted leading-relaxed max-w-xl" data-field="hero.intro">
         İstanbul Sabahattin Zaim Üniversitesi kökenli OPPIA ROBOTICS; TEKNOFEST ve uluslararası
         robotik yarışmalarında mühendislik disipliniyle yarışan bir öğrenci takımıdır.
       </p>
@@ -229,8 +229,8 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl">
       <span class="text-oppia-cyan text-sm font-semibold">Hakkımızda</span>
-      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Mühendislik disipliniyle yarışıyoruz</h2>
-      <p class="mt-5 text-oppia-muted leading-relaxed">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3" data-field="about.heading">Mühendislik disipliniyle yarışıyoruz</h2>
+      <p class="mt-5 text-oppia-muted leading-relaxed" data-field="about.text">
         OPPIA ROBOTICS, robotik ve otonom sistemler alanında çalışan, TEKNOFEST başta olmak üzere ulusal ve
         uluslararası yarışmalarda Türkiye'yi temsil eden bir mühendislik takımıdır. Farklı mühendislik
         disiplinlerinden gelen ekip üyelerimiz; tasarım, üretim ve yazılım süreçlerinin tamamını kendi
@@ -243,13 +243,13 @@
       <div class="border-l-2 border-oppia-cyan/70 bg-oppia-panel/40 p-7">
         <svg class="w-7 h-7 text-oppia-cyan mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
         <h3 class="font-display font-semibold text-lg">Misyonumuz</h3>
-        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed">Yenilikçi, sürdürülebilir ve yüksek performanslı robotik sistemler geliştirerek Türkiye'nin teknoloji ekosistemine katkı sağlamak.</p>
+        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed" data-field="about.mission">Yenilikçi, sürdürülebilir ve yüksek performanslı robotik sistemler geliştirerek Türkiye'nin teknoloji ekosistemine katkı sağlamak.</p>
       </div>
       <!-- Vizyon -->
       <div class="border-l-2 border-oppia-cyan/70 bg-oppia-panel/40 p-7">
         <svg class="w-7 h-7 text-oppia-cyan mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
         <h3 class="font-display font-semibold text-lg">Vizyonumuz</h3>
-        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed">Robotik ve otonom sistemler alanında uluslararası arenada tanınan, öncü bir mühendislik takımı olmak.</p>
+        <p class="mt-2.5 text-sm text-oppia-muted leading-relaxed" data-field="about.vision">Robotik ve otonom sistemler alanında uluslararası arenada tanınan, öncü bir mühendislik takımı olmak.</p>
       </div>
     </div>
 
@@ -257,14 +257,14 @@
     <div class="mt-24">
       <div class="max-w-2xl">
         <span class="text-oppia-cyan text-sm font-semibold">Tarihçemiz</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Nereden nereye</h2>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3" data-field="history.heading">Nereden nereye</h2>
       </div>
 
       <div class="mt-10 grid lg:grid-cols-5 gap-10 items-start">
         <!-- Alıntı paneli -->
         <div class="lg:col-span-2 corners border border-oppia-line bg-oppia-panel/50 p-7 sm:p-8">
           <svg class="w-8 h-8 text-oppia-cyan/50 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 6C6.5 7.8 5 10.2 5 13c0 2.5 1.7 4 3.7 4 1.8 0 3.2-1.3 3.2-3.1 0-1.7-1.2-3-2.8-3-.3 0-.6 0-.8.1.3-1.7 1.7-3.4 3.7-4.4L9.5 6Zm9 0c-3 1.8-4.5 4.2-4.5 7 0 2.5 1.7 4 3.7 4 1.8 0 3.2-1.3 3.2-3.1 0-1.7-1.2-3-2.8-3-.3 0-.6 0-.8.1.3-1.7 1.7-3.4 3.7-4.4L18.5 6Z"/></svg>
-          <p class="text-sm sm:text-[15px] text-oppia-text/90 leading-relaxed italic">
+          <p class="text-sm sm:text-[15px] text-oppia-text/90 leading-relaxed italic" data-field="history.quote">
             İstanbul Sabahattin Zaim Üniversitesi 2. sınıf Yazılım Mühendisliği öğrencilerinden Moustafa Bekir,
             İremnaz Çay, Sinem Sena Ertaş ve Merve Boşna tarafından "İZÜ ROBOT TAKIMI" adıyla Nisan 2017'de
             kurulmuştur. 2021 yılında TÜBİTAK BİGG aracılığıyla OPPİA TECHNOLOGY şirketi kurulmuş, 2025 yılı
@@ -272,8 +272,8 @@
           </p>
         </div>
 
-        <!-- Zaman çizelgesi -->
-        <div class="lg:col-span-3 space-y-0">
+        <!-- Zaman çizelgesi (content/site.json → history.events) -->
+        <div id="history-events" class="lg:col-span-3 space-y-0">
           <div class="flex gap-5">
             <div class="flex flex-col items-center">
               <span class="w-3 h-3 rounded-full bg-oppia-cyan mt-1.5 shrink-0 shadow-[0_0_0_4px_rgba(0,229,255,.15)]"></span>
@@ -371,7 +371,7 @@
     <div class="max-w-2xl mb-16">
       <span class="text-oppia-cyan text-sm font-semibold">İletişim & Konum</span>
       <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3">Bizimle iletişime geçin</h2>
-      <p class="mt-5 text-oppia-muted leading-relaxed">Sponsorluk, iş birliği veya takıma katılım hakkında bilgi almak için formu doldurun ya da doğrudan bize ulaşın.</p>
+      <p class="mt-5 text-oppia-muted leading-relaxed" data-field="contact.intro">Sponsorluk, iş birliği veya takıma katılım hakkında bilgi almak için formu doldurun ya da doğrudan bize ulaşın.</p>
     </div>
 
     <div class="grid lg:grid-cols-5 gap-10">
@@ -407,18 +407,18 @@
           <div class="space-y-4 text-sm">
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 text-oppia-cyan shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/></svg>
-              <span class="text-oppia-muted">oppiarobotics@gmail.com</span>
+              <span class="text-oppia-muted" data-field="contact.email">oppiarobotics@gmail.com</span>
             </div>
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 text-oppia-cyan shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657 13.414 20.9a2 2 0 0 1-2.828 0l-4.243-4.243a8 8 0 1 1 11.314 0Z"/><circle cx="12" cy="11" r="3"/></svg>
-              <span class="text-oppia-muted">İstanbul Sabahattin Zaim Üniversitesi, İstanbul</span>
+              <span class="text-oppia-muted" data-field="contact.address">İstanbul Sabahattin Zaim Üniversitesi, İstanbul</span>
             </div>
           </div>
         </div>
 
         <div class="border border-oppia-line bg-oppia-panel/60 p-7">
           <h3 class="font-display font-semibold text-lg mb-5">Sosyal Medya</h3>
-          <div class="flex flex-wrap gap-3">
+          <div id="social-links" class="flex flex-wrap gap-3">
             <a href="https://www.instagram.com/oppiarobotics?stkn=dXJzNzFqOGFzMnll" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-11 h-11 flex items-center justify-center border border-oppia-line hover:border-oppia-cyan hover:text-oppia-cyan text-oppia-muted transition">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
             </a>

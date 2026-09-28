@@ -8,6 +8,7 @@ OPPIA ROBOTICS takımının tanıtım sitesi. Sunucu gerektirmeyen statik bir si
 index.html          Sayfa iskeleti (menü, hero, hakkımızda, tarihçe, iletişim, footer)
 js/site.js          İçerikleri JSON dosyalarından okuyup sayfaya yerleştirir; menü, galeri, form
 content/            Düzenlenebilir içerikler
+  site.json         Hero, Hakkımızda, Tarihçe ve İletişim metinleri, sosyal medya linkleri
   team.json         Takım üyeleri ("featured": true olanlar üst satırda gösterilir)
   robots.json       Robotlar
   stats.json        "Rakamlarla OPPIA ROBOTICS" sayaçları
@@ -16,6 +17,8 @@ content/            Düzenlenebilir içerikler
 images/             Logo, galeri, takım ve robot fotoğrafları
   uploads/          Yönetim panelinden yüklenen fotoğraflar
 admin/              Yönetim paneli (Decap CMS)
+  config.yml        Panelde hangi alanların düzenlenebileceği
+  preview.js/.css   Düzenleme ekranındaki canlı önizlemeler
 ```
 
 ## Yönetim paneli

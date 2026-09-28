@@ -236,9 +236,57 @@ function initGalleryAutoplay(root){
 }
 
 // ---------------------------------------------------------
+// GENEL METİNLER (hero, hakkımızda, tarihçe, iletişim)
+// ---------------------------------------------------------
+const SOCIAL_ICONS = {
+  instagram: { label: 'Instagram', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>' },
+  youtube:   { label: 'YouTube', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none"/></svg>' },
+  linkedin:  { label: 'LinkedIn', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="2.5" width="19" height="19" rx="3"/><path stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6M11.5 13c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5v3.5"/></svg>' },
+  x:         { label: 'X (Twitter)', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M4 4l16 16M20 4 4 20"/></svg>' },
+  github:    { label: 'GitHub', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>' },
+  website:   { label: 'Web sitesi', svg: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3Z"/></svg>' },
+};
+
+function renderSite(data){
+  // data-field="bolum.alan" olan öğelerin metnini güncelle (boş alanlar sayfadaki metni korur)
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const value = el.dataset.field.split('.').reduce((obj, key) => (obj == null ? obj : obj[key]), data);
+    if (typeof value === 'string' && value.trim()) el.textContent = value;
+  });
+
+  const events = (data.history && data.history.events) || [];
+  if (events.length){
+    document.getElementById('history-events').innerHTML = events.map((ev, i) => {
+      const last = i === events.length - 1;
+      return `
+        <div class="flex gap-5">
+          <div class="flex flex-col items-center">
+            <span class="w-3 h-3 rounded-full bg-oppia-cyan mt-1.5 shrink-0${last ? '' : ' shadow-[0_0_0_4px_rgba(0,229,255,.15)]'}"></span>
+            ${last ? '' : '<span class="w-px flex-1 bg-oppia-line mt-1"></span>'}
+          </div>
+          <div${last ? '' : ' class="pb-9"'}>
+            <p class="text-xs font-mono text-oppia-amber">${esc(ev.date)}</p>
+            <h4 class="font-display font-semibold text-base mt-1">${esc(ev.title)}</h4>
+            ${ev.text ? `<p class="mt-1.5 text-sm text-oppia-muted leading-relaxed">${esc(ev.text)}</p>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  const socials = ((data.contact && data.contact.socials) || []).filter(s => /^https?:\/\//i.test(s.url || ''));
+  if (socials.length){
+    document.getElementById('social-links').innerHTML = socials.map(s => {
+      const icon = SOCIAL_ICONS[s.platform] || SOCIAL_ICONS.website;
+      return `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(icon.label)}" class="w-11 h-11 flex items-center justify-center border border-oppia-line hover:border-oppia-cyan hover:text-oppia-cyan text-oppia-muted transition">${icon.svg}</a>`;
+    }).join('');
+  }
+}
+
+// ---------------------------------------------------------
 // İÇERİKLERİ YÜKLE
 // ---------------------------------------------------------
 const sections = [
+  ['content/site.json', renderSite],
   ['content/gallery.json', renderGallery],
   ['content/team.json', renderTeam],
   ['content/robots.json', renderRobots],

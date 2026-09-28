@@ -5,9 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>OPPIA ROBOTICS | Yönetim Paneli</title>
+  <style>
+    /* Sağ alttaki kısayol butonları */
+    .oppia-shortcuts{
+      position:fixed; right:18px; bottom:18px; z-index:9999;
+      display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+      font-family:system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .oppia-shortcuts a{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 16px; border-radius:8px; text-decoration:none;
+      font-size:14px; font-weight:600; box-shadow:0 6px 20px rgba(0,0,0,.25);
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .oppia-shortcuts a:hover{ transform:translateY(-1px); filter:brightness(1.08); }
+    .oppia-publish{ background:#FF7A29; color:#0A0E14; }
+    .oppia-view{ background:#0A0E14; color:#00E5FF; border:1px solid #1E2A3A; }
+    .oppia-help{
+      max-width:230px; background:#0A0E14; color:#8593A8; border:1px solid #1E2A3A;
+      border-radius:8px; padding:8px 12px; font-size:12px; line-height:1.4; display:none;
+    }
+    .oppia-shortcuts:hover .oppia-help{ display:block; }
+  </style>
 </head>
 <body>
-  <!-- Decap CMS: ayarlar admin/config.yml dosyasındadır -->
+  <!-- Decap CMS: ayarlar admin/config.yml, önizlemeler admin/preview.js dosyasındadır -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="/admin/preview.js"></script>
+
+  <div class="oppia-shortcuts">
+    <div class="oppia-help">Paneldeki kayıtlar siteye otomatik yansımaz. İşin bitince "Siteyi Yayınla" → Netlify'da <b>Trigger deploy → Deploy project</b>.</div>
+    <a class="oppia-view" href="/" target="_blank" rel="noopener">↗ Siteyi Görüntüle</a>
+    <a class="oppia-publish" href="https://app.netlify.com/sites/earnest-marigold-066590/deploys" target="_blank" rel="noopener">🚀 Siteyi Yayınla</a>
+  </div>
 </body>
 </html>
