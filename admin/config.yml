@@ -6,12 +6,15 @@ backend:
   name: github
   repo: amuckaahmet1-jpg/oppia-robotics-site
   branch: main
+  # "[skip netlify]" etiketi sayesinde panel kayıtları Netlify'da otomatik yayın başlatmaz
+  # (her yayın kredi harcar). Değişiklikleri siteye yansıtmak için Netlify'da
+  # Deploys → Trigger deploy → Deploy project ile elle yayınlayın.
   commit_messages:
-    create: "{{collection}}: {{slug}} oluşturuldu"
-    update: "{{collection}}: {{slug}} güncellendi"
-    delete: "{{collection}}: {{slug}} silindi"
-    uploadMedia: "Fotoğraf yüklendi: {{path}}"
-    deleteMedia: "Fotoğraf silindi: {{path}}"
+    create: "{{collection}}: {{slug}} oluşturuldu [skip netlify]"
+    update: "{{collection}}: {{slug}} güncellendi [skip netlify]"
+    delete: "{{collection}}: {{slug}} silindi [skip netlify]"
+    uploadMedia: "Fotoğraf yüklendi: {{path}} [skip netlify]"
+    deleteMedia: "Fotoğraf silindi: {{path}} [skip netlify]"
 
 locale: tr
 

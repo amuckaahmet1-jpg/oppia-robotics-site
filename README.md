@@ -22,8 +22,10 @@ admin/              Yönetim paneli (Decap CMS)
 
 İçerikler **https://www.oppiarobotics.com/admin** adresindeki panelden düzenlenir.
 Giriş GitHub hesabıyla yapılır; bu repoya yazma yetkisi olan herkes kaydedebilir.
-Panelde yapılan her kayıt `main` dalına bir commit olarak gider ve Netlify siteyi
-otomatik olarak yeniden yayınlar. Panel ayarları `admin/config.yml` dosyasındadır.
+Panelde yapılan her kayıt `main` dalına bir commit olarak gider. Netlify kredisini
+korumak için bu kayıtlar otomatik yayın başlatmaz (`[skip netlify]`). Değişiklikleri
+siteye yansıtmak için Netlify'da **Deploys → Trigger deploy → Deploy project** ile
+tek seferde yayınlayın. Panel ayarları `admin/config.yml` dosyasındadır.
 
 ## İçerik güncelleme
 
