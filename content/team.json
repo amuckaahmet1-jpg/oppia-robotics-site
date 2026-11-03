@@ -87,6 +87,30 @@
           "school": "İstanbul Üniversitesi"
         }
       ]
+    },
+    {
+      "featured": false,
+      "name": "Esra Nur Yiğit",
+      "role": "yazılım sorumlusu",
+      "photo": "images/uploads/esra-nur-yiğit.jpeg",
+      "education": [
+        {
+          "department": "Bilgisayar Mühendisliği (Yüksek lisans)",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
+    },
+    {
+      "featured": false,
+      "name": "Rüveyda Güneş",
+      "role": "yazılım sorumlusu",
+      "photo": "images/uploads/rüve.jpeg",
+      "education": [
+        {
+          "department": "Bilgisayar Mühendisliği (Yüksek lisans)",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ]
     }
   ]
 }
