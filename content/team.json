@@ -111,6 +111,18 @@
           "school": "İstanbul Sabahattin Zaim Üniversitesi"
         }
       ]
+    },
+    {
+      "featured": false,
+      "name": "Berat Yetiş",
+      "role": "Elektronik ve mekanik sorumlusu",
+      "education": [
+        {
+          "department": "Bilgisayar Mühendisliği",
+          "school": "İstanbul Sabahattin Zaim Üniversitesi"
+        }
+      ],
+      "photo": "images/uploads/whatsapp-image-2026-11-18-at-11.22.51.jpeg"
     }
   ]
 }
